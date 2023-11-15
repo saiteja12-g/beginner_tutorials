@@ -1,17 +1,13 @@
-// Copyright 2016 Open Source Robotics Foundation, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
+/**
+ * @file publisher_member_function.cpp
+ * @author Sai Teja Gilukara (saitejag@umd.edu)
+ * @brief 
+ * @version 0.1
+ * @date 2023-11-14
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include <chrono>
 #include <functional>
 #include <memory>
@@ -24,10 +20,20 @@
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
-using sharedFuture = rclcpp::Client<beginner_tutorials::srv::MsgModify>::SharedFuture;
 
+using sharedFuture = rclcpp::Client<
+  beginner_tutorials::srv::MsgModify>::SharedFuture;
+
+/**
+ * @brief MinimalPublisher class implementation. It server client, talker node and logging functions.
+ * 
+ */
 class MinimalPublisher : public rclcpp::Node {
  public:
+ /**
+  * @brief Construct a new Minimal Publisher object
+  * 
+  */
   MinimalPublisher() : Node("minimal_publisher"), count_(0) {
     // Declare parameters
     auto param_desc = rcl_interfaces::msg::ParameterDescriptor();
@@ -54,7 +60,8 @@ class MinimalPublisher : public rclcpp::Node {
     timer_ = this->create_wall_timer(
         delta, std::bind(&MinimalPublisher::timer_callback, this));
 
-    client = this->create_client<beginner_tutorials::srv::MsgModify>("modify_msg");
+    client = this->create_client<
+      beginner_tutorials::srv::MsgModify>("modify_msg");
 
     // Logging information
     RCLCPP_DEBUG(this->get_logger(), "Created Client");
@@ -77,6 +84,10 @@ class MinimalPublisher : public rclcpp::Node {
   std::shared_ptr<rclcpp::ParameterEventHandler> parameter_subscriber_;
   std::shared_ptr<rclcpp::ParameterCallbackHandle> parameterHandle_;
 
+  /**
+   * @brief publish message and calls server callback at every 10 count
+   * 
+   */
   void timer_callback() {
     RCLCPP_INFO_STREAM_ONCE(this->get_logger(), "Node setup");
     auto message = std_msgs::msg::String();
@@ -98,8 +109,14 @@ class MinimalPublisher : public rclcpp::Node {
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr publisher_;
   size_t count_;
 
+  /**
+   * @brief function to define service parameters
+   * 
+   * @return int 
+   */
   int call_service() {
-    auto request = std::make_shared<beginner_tutorials::srv::MsgModify::Request>();
+    auto request = std::make_shared<
+      beginner_tutorials::srv::MsgModify::Request>();
     request->a = "String1";
     request->b = " String2";
     // Logging information when service is called
@@ -110,12 +127,22 @@ class MinimalPublisher : public rclcpp::Node {
     return 1;
   }
 
+  /**
+   * @brief function call the response call_service method
+   * 
+   * @param future 
+   */
   void response_callback(sharedFuture future) {
     // Process the response
     RCLCPP_INFO(this->get_logger(), "Got String: %s", future.get()->c.c_str());
     Message = future.get()->c.c_str();
   }
 
+  /**
+   * @brief function assigns updated value to parameter
+   * 
+   * @param param 
+   */
   void parameter_callback(const rclcpp::Parameter &param) {
     RCLCPP_INFO(this->get_logger(),
                 "cb: Received an update to parameter \"%s\" of type %s: %.2f",
@@ -135,6 +162,14 @@ class MinimalPublisher : public rclcpp::Node {
     }
   }
 };
+
+/**
+ * @brief main function
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 
 int main(int argc, char *argv[]) {
   rclcpp::init(argc, argv);
