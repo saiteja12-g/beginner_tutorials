@@ -1,8 +1,11 @@
 # ROS2 CPP Publisher and Subscriber Tutorial
 
-## Overview
+## To-Do
 
-The main purpose of this package is to disseminate personalized text messages.
+- Modify the Publisher Node to Publish a Custom String Message
+- Follow Google C++ Style Guide in the Tutorial Code
+- Run Cpplint on ROS Package Files and Save Output
+- Run Cppcheck on ROS Package Files and Save Output
 
 ## Prerequisites
 
