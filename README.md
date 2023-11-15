@@ -8,8 +8,10 @@ The main purpose of this package is to disseminate personalized text messages.
 
 - Ubuntu 22.04
 - ROS 2 Humble
+- rclcpp
+- stdmsgs
 
-## Build and Run Instructions
+## Build and Run nodes by terminal commands 
 
 1. **Clone Package**
 
@@ -48,7 +50,35 @@ The main purpose of this package is to disseminate personalized text messages.
     source install/setup.bash
     ros2 run beginner_tutorials listener
     ```
+6. **Launch server**
+    Open a new terminal, navigate to ros2 workspace and run the subscriber node.
 
-## References
+        ```sh
+        source install/setup.bash
+        ros2 run beginner_tutorials server
+        ```
 
-[1] <https://docs.ros.org/en/humble/Tutorials/Beginner-Client-Libraries/Writing-A-Simple-Cpp-Publisher-And-Subscriber.html>
+## Build and Run nodes by launch file
+Close all the terminal and reopen new terminal
+
+```sh
+cd ~/ros2_ws
+source install/setup.bash
+
+cd src/beginner_tutorials/launch
+ros2 launch launch.yaml frequency:=20.0
+```
+
+## Change `frequency` parameter 
+```sh
+cd ~/ros2_ws
+source install/setup.bash
+
+ros2 param set \minimal_publisher freq 5.0
+```
+## Results 
+Terminal output
+![Alt text](results/rqt_&_.png)
+
+Logging info and RQT node graph
+![Alt text](results/terminal_output.png)
