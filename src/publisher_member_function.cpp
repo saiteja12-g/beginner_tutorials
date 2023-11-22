@@ -101,7 +101,6 @@ class MinimalPublisher : public rclcpp::Node {
 
     tf_static_broadcaster_->sendTransform(t);
   }
-  
 
  private:
   std::string Message;
