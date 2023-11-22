@@ -8,6 +8,9 @@
  * @copyright Copyright (c) 2023
  * 
  */
+
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_ros/static_transform_broadcaster.h>
 #include <chrono>
 #include <functional>
 #include <memory>
@@ -76,10 +79,33 @@ class MinimalPublisher : public rclcpp::Node {
           rclcpp::get_logger("rclcpp"),
           "RUN SERVER TO REFLECT CHANGES");
     }
+    // Broadcast a tf frame
+    tf_static_broadcaster_ =
+        std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
+    geometry_msgs::msg::TransformStamped t;
+
+    t.header.stamp = this->get_clock()->now();
+    t.header.frame_id = "world";  // Parent "/world"
+    t.child_frame_id = "talk";    // Child "/talk"
+
+    // Translation block
+    t.transform.translation.x = 1;
+    t.transform.translation.y = 2;
+    t.transform.translation.z = 3;
+
+    // Rotation block
+    t.transform.rotation.x = 1;
+    t.transform.rotation.y = 0.5;
+    t.transform.rotation.z = -1;
+    t.transform.rotation.w = 0;
+
+    tf_static_broadcaster_->sendTransform(t);
   }
+  
 
  private:
   std::string Message;
+  std::shared_ptr<tf2_ros::StaticTransformBroadcaster> tf_static_broadcaster_;
   rclcpp::Client<beginner_tutorials::srv::MsgModify>::SharedPtr client;
   std::shared_ptr<rclcpp::ParameterEventHandler> parameter_subscriber_;
   std::shared_ptr<rclcpp::ParameterCallbackHandle> parameterHandle_;
