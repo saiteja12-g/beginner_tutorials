@@ -1,7 +1,11 @@
 Checking src/beginner_tutorials/src/publisher_member_function.cpp ...
-1/3 files checked 69% done
+1/5 files checked 60% done
 Checking src/beginner_tutorials/src/server.cpp ...
-2/3 files checked 84% done
+2/5 files checked 71% done
 Checking src/beginner_tutorials/src/subscriber_member_function.cpp ...
-3/3 files checked 100% done
+3/5 files checked 83% done
+Checking src/beginner_tutorials/test/main.cpp ...
+4/5 files checked 92% done
+Checking src/beginner_tutorials/test/test.cpp ...                ^
+5/5 files checked 100% done
 

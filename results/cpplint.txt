@@ -1,4 +1,6 @@
 Done processing src/beginner_tutorials/src/publisher_member_function.cpp
 Done processing src/beginner_tutorials/src/server.cpp
 Done processing src/beginner_tutorials/src/subscriber_member_function.cpp
+Done processing src/beginner_tutorials/test/main.cpp
+Done processing src/beginner_tutorials/test/test.cpp
 
