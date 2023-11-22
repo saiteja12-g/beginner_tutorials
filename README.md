@@ -77,11 +77,15 @@ ros2 run tf2_tools view_frames
 
 ## Bag Files
 
+Open a new terminal
 ### Record a Bag file
 ##### Terminal 1
+make sure you didnt close `Terminal 1` & `Terminal 3` from above
 ```sh
+cd ~/ros2_ws
+source install/setup.bash
 cd ~/ros2_ws/src/beginner_tutorials/launch
-ros2 launch beginner_tutorials rosbag_record_launch.xml bag_record:=1
+ros2 launch beginner_tutorials rosbag_launch.xml bag_record:=1
 ```
 To stop recording, press `Ctrl+C`
 
@@ -89,7 +93,7 @@ To stop recording, press `Ctrl+C`
 In the same terminal,
 ```sh
 cd
-cd ~/ros2_ws/src/beginner_tutorials/results
+cd ~/ros2_ws/src/beginner_tutorials
 ros2 bag info all_topics
 ```
 
@@ -103,12 +107,12 @@ source install/setup.bash
 ##### Terminal 1
 ```sh
 cd ~/ros2_ws/
-ros2 run cpp_pubsub listener
+ros2 run beginner_tutorials listener
 ```
 
 ##### Terminal 2
 ```sh
-cd ~/ros2_ws/src/beginner_tutorials/results
+cd ~/ros2_ws/src/beginner_tutorials
 ros2 bag play all_topics
 ```
 Close all terminals
