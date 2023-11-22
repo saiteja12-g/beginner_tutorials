@@ -31,6 +31,7 @@ git clone https://github.com/saiteja12-g/beginner_tutorials.git
 
 ### Build the Package
 ```sh
+cd ..
 colcon build --packages-select beginner_tutorials
 ```
 
@@ -45,7 +46,7 @@ close the terminal after the above command
 ## Checking tf
 Open 4 terminals. In all the terminals, run the following commands
 ```sh
-cd ~/ros_ws
+cd ~/ros2_ws
 #sourcing the terminals
 source install/setup.bash
 ```
@@ -63,13 +64,13 @@ ros2 run tf2_ros tf2_echo world talk
 ### Starting the server
 ##### Terminal 3
 ```sh
-ros2 run beginner_tutorials talker
+ros2 run beginner_tutorials server
 ```
 
 ### Save tf tree as pdf
 ##### Terminal 4
 ```sh
-cd ~/ros_ws/src/beginner_tutorials/results
+cd ~/ros2_ws/src/beginner_tutorials/results
 ros2 run tf2_tools view_frames
 ```
 
@@ -79,7 +80,7 @@ ros2 run tf2_tools view_frames
 ### Record a Bag file
 ##### Terminal 1
 ```sh
-cd ~/ros_ws/src/beginner_tutorials/launch
+cd ~/ros2_ws/src/beginner_tutorials/launch
 ros2 launch beginner_tutorials rosbag_record_launch.xml bag_record:=1
 ```
 To stop recording, press `Ctrl+C`
@@ -88,26 +89,26 @@ To stop recording, press `Ctrl+C`
 In the same terminal,
 ```sh
 cd
-cd ~/ros_ws/src/beginner_tutorials/results
+cd ~/ros2_ws/src/beginner_tutorials/results
 ros2 bag info all_topics
 ```
 
 ### Play a Bag file
 Open 2 terminals, run the following commands.
 ```sh
-cd ~/ros_ws
+cd ~/ros2_ws
 #sourcing the terminals
 source install/setup.bash
 ```
 ##### Terminal 1
 ```sh
-cd ~/ros_ws/
+cd ~/ros2_ws/
 ros2 run cpp_pubsub listener
 ```
 
 ##### Terminal 2
 ```sh
-cd ~/ros_ws/src/beginner_tutorials/results
+cd ~/ros2_ws/src/beginner_tutorials/results
 ros2 bag play all_topics
 ```
 Close all terminals
@@ -115,7 +116,7 @@ Close all terminals
 ## Launch the nodes
 Open 3 terminals, run the following commands.
 ```sh
-cd ~/ros_ws
+cd ~/ros2_ws
 #sourcing the terminals
 source install/setup.bash
 ```
@@ -140,7 +141,7 @@ Close all terminals
 ## Build and Run nodes by launch file
 Open 2 terminals, run the following commands
 ```sh
-cd ~/ros_ws
+cd ~/ros2_ws
 #sourcing the terminals
 source install/setup.bash
 ```
