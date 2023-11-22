@@ -161,7 +161,7 @@ ros2 param set \minimal_publisher freq 5.0
 ```
 ## Results 
 Terminal output
-![Alt text](/src/beginner_tutorials/results/rqt_&_.png)
+![Alt text](/results/rqt_&_.png)
 
 Logging info and RQT node graph
-![Alt text](/src/beginner_tutorials/results/rqt_&_.png)
+![Alt text](/results/rqt_&_.png)
